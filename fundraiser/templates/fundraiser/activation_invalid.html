@@ -1,0 +1,24 @@
+{% extends 'fundraiser/base.html' %}
+{% block body %}
+
+<div  class="h-100" style="z-index:90;position:absolute;top:0;background-image: linear-gradient(#283c86, #45a247);">
+    <div class="d-flex justify-content-start mx-3 my-3">
+        <a href="{% url 'fundraiser:index' %}">
+            <span class="bg-gradient-dark py-1 px-2 h6 text-success cursor-pointer" style="border-radius: 10px;"><i class="fa fa-arrow-left   py-1 px-2"></i> Go Back</span>
+        </a>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row text-center d-flex justify-content-center my-5">
+            <div class="col-10">
+                <div class="card bg-gradient-dark mx-2 my-5 px-2">
+                    <div class="card-body">
+                        <span class="px-2 py-4 text-light">The link does not exist or has expired</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

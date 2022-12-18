@@ -1,0 +1,8 @@
+{% autoescape off %}
+
+Hi {{ user.first_name }} {{ user.last_name }}
+
+Please Click the following link to confirm your registration
+
+http://{{domain}}{% url 'fundraiser:activate' uidb64=uid token=token %}
+{% endautoescape off %}

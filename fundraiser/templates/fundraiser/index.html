@@ -1,0 +1,441 @@
+{% extends 'fundraiser/base.html' %}
+{% block body %}
+
+<div id="register_overlay" style="z-index:99999;position:fixed;background-color:rgb(0,0,65,0.9);display: none;" class="w-100 h-100">
+    <div class="my-3 mx-3">
+      <span class="btn btn-danger" onclick="hide_register_overlay()"><i class="fa fa-arrow-left"></i>  Go Back</span>
+    </div>
+    <div class="container-fluid my-5">
+      <div class="row my-5">
+        <div class="col-lg-5 py-4 mx-auto my-5 bg-light" style="border-radius: 12px;border-color:blue;border-style: solid;">
+          <form action="" class="form-control my-auto">
+            <div class="text-center h4 text-primary">Register</div>
+            <div class="row">
+              <div class="col-lg-6 my-3">
+                <input type="text" class="form-control" placeholder="First Name: ">
+              </div>
+              <div class="col-lg-6 my-3">
+                <input type="text" class="form-control" placeholder="Last Name: ">
+              </div>
+              <div class="col-12 my-3">
+                <input type="email" class="form-control" placeholder="Email Address: ">
+              </div>
+              <div class="col-lg-6 my-3">
+                <input type="password" class="form-control" placeholder="Password: ">
+              </div>
+              <div class="col-lg-6 my-3">
+                <input type="password" class="form-control" placeholder="Repeat Password: ">
+              </div>
+              <div class="col-12 my-2 d-flex justify-content-center my-3">
+                <button class="btn btn-primary form-control" type="submit">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function display_register_overlay(){
+      document.getElementById("register_overlay").style.display = "block";
+    }
+    function hide_register_overlay(){
+      document.getElementById("register_overlay").style.display = "none";
+    }
+
+  </script>
+
+
+<div id="login_overlay" style="z-index:99999;position:fixed;background-color:rgb(0,0,65,0.9);display: none;" class="w-100 h-100">
+  <div class="my-3 mx-3">
+    <span class="btn btn-danger" onclick="hide_login_overlay()"><i class="fa fa-arrow-left"></i>  Go Back</span>
+  </div>
+  <div class="container-fluid my-5">
+    <div class="row my-5">
+      <div class="col-lg-5 py-4 mx-auto my-5 bg-light" style="border-radius: 12px;border-color:blue;border-style: solid;">
+        <form action="" class="form-control my-auto">
+          <div class="text-center h4 text-primary">Login</div>
+          <div class="row">
+            <div class="col-12 my-3">
+              <input type="email" class="form-control" placeholder="Email Address: ">
+            </div>
+            <div class="col-lg-12 my-3">
+              <input type="password" class="form-control" placeholder="Password: ">
+            </div>
+            <div class="col-12 my-2 d-flex justify-content-center my-3">
+              <button class="btn btn-primary form-control" type="submit">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function display_login_overlay(){
+    document.getElementById("login_overlay").style.display = "block";
+  }
+  function hide_login_overlay(){
+    document.getElementById("login_overlay").style.display = "none";
+  }
+
+</script>
+
+
+<div id="fundraising_form_2_overlay" style="z-index:99999;position:fixed;background-color:rgb(0,0,65,0.9);display: none;" class="w-100 h-100">
+  <div class="my-3 mx-3">
+    <span class="btn btn-danger" onclick="hide_form_2_overlay()"><i class="fa fa-arrow-left"></i>  Go Back</span>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-5 py-4 mx-auto my-2 bg-light" style="border-radius: 12px;border-color:blue;border-style: solid;">
+        <form action="" class="form-control my-auto">
+          <div class="text-center h5 text-primary mb-2">Finish Creating Fundraising Event</div>
+          <div class="row">
+            <div class="col-12 my-1">
+              <label for="">Event Name</label>
+              <input type="text" name="event_name" class="form-control" id="event_name_id" required>
+            </div>
+
+            <div class="col-12 my-1">
+              <label for="">Intention</label>
+              <input type="text" name="event_intention" class="form-control" id="event_intention_id" required>
+            </div>
+
+            <div class="col-6 my-1">
+              <label for="">Start Date:</label>
+              <input type="date" name="event_start_date" class="form-control" id="event_start_date_id" required>
+            </div>
+            <div class="col-6 my-1">
+              <label for="">End Date:</label>
+              <input type="date" name="event_end_date" class="form-control" id="event_end_date_id" required>
+            </div>
+
+            <div class="col-12 my-1">
+              <label for="">Event Description:</label>
+              <textarea class="form-control" name="event_description" id="event_description_id" cols="30" rows="5" required></textarea>
+            </div>
+
+            <div class="col-12 my-2 d-flex justify-content-center my-3">
+              <button class="btn btn-primary form-control" type="submit">Submit & Finish</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero d-flex align-items-center">
+    <div class="container">
+      <div class="row gy-4 d-flex justify-content-between">
+        <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+          <h2 data-aos="fade-up">Every contribution counts. Together we can make a big impact!</h2>
+          <p data-aos="fade-up" data-aos-delay="100">We are all part of a greater community, and we all have a responsibility to help each other. When we come together to support a cause, we can make a real difference in people's lives. Together, we can build a better tomorrow!</p>
+          <div class="text-center h4 text-light">Create Fundraising Event</div>
+          <form id="fundraising_event_form_1" onsubmit="display_form_2_overlay()" class="d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
+            <input type="text" class="form-control" placeholder="Event Name" id="initial_event_name" required>
+            <button type="submit" class="btn btn-primary">Create</button>
+          </form>
+
+          <script>
+            document.getElementById("fundraising_event_form_1").addEventListener("submit", function(event){
+              event.preventDefault()
+            });
+
+            function display_form_2_overlay(){
+              document.getElementById("fundraising_form_2_overlay").style.display = "block";
+              document.getElementById("event_name_id").value = document.getElementById("initial_event_name").value;
+            }
+            function hide_form_2_overlay(){
+              document.getElementById("fundraising_form_2_overlay").style.display = "none";
+            }
+          </script>
+
+          <div class="row gy-4" data-aos="fade-up" data-aos-delay="400">
+
+            <div class="col-lg-4 col-6">
+              <div class="stats-item text-center w-100 h-100">
+                <span data-purecounter-start="0" data-purecounter-end="2320" data-purecounter-duration="1" class="purecounter"></span>
+                <p>No of Fundraising Events</p>
+              </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-4 col-6">
+              <div class="stats-item text-center w-100 h-100">
+                <span data-purecounter-start="0" data-purecounter-end="2100678" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Amount Raised To Date (Ksh)</p>
+              </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-4 col-6">
+              <div class="stats-item text-center w-100 h-100">
+                <span data-purecounter-start="0" data-purecounter-end="101" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Ongoing Fundraising Events</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+          <img src="https://res.cloudinary.com/betsafe-kenya/image/upload/v1671370676/tuokoleane/img/hero-img_tvkdxn.svg" class="img-fluid mb-3 mb-lg-0" alt="">
+        </div>
+
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+
+  <main id="main">
+
+    <!-- ======= Featured Services Section ======= -->
+    <section id="featured-services" class="featured-services">
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up">
+            <div class="icon flex-shrink-0"><i class="fa fa-user-plus"></i></div>
+            <div>
+              <h4 class="title">Sign Up</h4>
+              <p class="description">Register using your name and email address</p>
+            </div>
+          </div>
+          <!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon flex-shrink-0"><i class="fa fa-heart"></i></div>
+            <div>
+              <h4 class="title">Create A Fundraising Event</h4>
+              <p class="description">Start a fundraising event by filling in the "Create A Fundraising Event" form</p>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon flex-shrink-0"><i class="fa fa-users"></i></div>
+            <div>
+              <h4 class="title">Inivite Others</h4>
+              <p class="description">Send the link of the created fundraising event to other users for them to join in.</p>
+            </div>
+          </div><!-- End Service Item -->
+
+        </div>
+
+      </div>
+    </section><!-- End Featured Services Section -->
+
+    <!-- ======= About Us Section ======= -->
+    <section id="about" class="about pt-0">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row gy-4">
+          <div class="col-lg-6 position-relative align-self-start order-lg-last order-first">
+            <img src="https://res.cloudinary.com/betsafe-kenya/image/upload/v1671370666/tuokoleane/img/hp001_ar8r0j.jpg" class="img-fluid" alt="">
+            <a href="https://www.youtube.com/watch?v=zcruIov45bI" class="glightbox play-btn"></a>
+          </div>
+          <div class="col-lg-6 content order-last  order-lg-first">
+            <h3>About Us</h3>
+            <p>
+              We are an organization dedicated to helping people hold successful online fundraising events. We have extensive experience in organizing and executing online fundraising events for a variety of causes, and we understand the challenges and opportunities associated with them. Our team of professionals is committed to helping you make your event a success. Our goal is to provide you with the tools and resources necessary to make your fundraiser a success. We look forward to helping you reach your fundraising goals!
+            </p>
+            <ul>
+              <li data-aos="fade-up" data-aos-delay="200">
+                <i class="bi bi-fullscreen-exit"></i>
+                <div>
+                  <h5>No act of kindness, no matter how small, is ever wasted.</h5>
+                </div>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Us Section -->
+
+    <!-- ======= Call To Action Section ======= -->
+    <section id="call-to-action" class="call-to-action">
+      <div class="container" data-aos="zoom-out">
+
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center">
+            <h3>Register Now (FREE)</h3>
+            <p>Register now to take advantage of all the features and benefits of our  free service! With our easy-to-use platform, you can start taking advantage of the many benefits our service has to offer in minutes. Don't miss out - register today!</p>
+            <a class="cta-btn" onclick="display_register_overlay()">Register</a>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Call To Action Section -->
+
+    <!-- ======= Features Section ======= -->
+    <section id="features" class="features">
+      <div class="container">
+
+        <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
+
+          <div class="col-md-5">
+            <img src="https://res.cloudinary.com/betsafe-kenya/image/upload/v1671370672/tuokoleane/img/features-1_ktynsj.jpg" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7">
+            <h3>The importance of helping one another.</h3>
+            <ul>
+              <li><i class="bi bi-check"></i>It builds strong connections and relationships.</li>
+              <li><i class="bi bi-check"></i>It encourages collaboration, trust, and respect.</li>
+              <li><i class="bi bi-check"></i>It helps to develop problem-solving skills, as well as empathy and understanding. </li>
+            </ul>
+          </div>
+        </div><!-- Features Item -->      
+      </div>
+    </section><!-- End Features Section -->
+
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container">
+
+        <div class="slides-1 swiper" data-aos="fade-up">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <h3>Alice Baraka</h3>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  I found them to be the perfect solution for my charity event. The platform was easy to use, and provided me with the tools I needed to manage donations, track analytics and create a professional looking event page. Highly recommended!
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <h3>Kelvin Mwangi</h3>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  I've been using this fundraising event platform for a while now and it has been incredibly helpful in organizing and managing my charity events. Highly recommended!
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <h3>Mercy Cheptoo</h3>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  Incredibly user friendly and allowed me to quickly create a professional looking event page and track donations in real time.
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <h3>Justine Mogoko</h3>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  I was really impressed with the level of customer service I received from this company. They answered all my questions quickly and accurately.
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <h3>Ann Mwendwa</h3>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  This online fundraiser was a great experience! It was easy to follow the instructions and the team was very helpful. 
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-info">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span>Tuokoleane</span>
+          </a>
+          <p>Every contribution counts. Together we can make a big impact!</p>
+          <div class="social-links d-flex mt-4">
+            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">How It Works.</a></li>
+            <li><a href="#">Our Services</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>
+            WIMA HSE, Gatundu Rd<br>
+            Juja, Kiambu<br>
+            Kenya<br><br>
+            <strong>Phone:</strong> +254 717 470 579<br>
+            <strong>Email:</strong> info@tuokoleane.com<br>
+          </p>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container mt-4">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Tuokoleane</span></strong>. All Rights Reserved
+      </div>
+      
+    </div>
+
+  </footer><!-- End Footer -->
+  <!-- End Footer -->
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader" style="display: none;"></div>
+
+
+{% endblock %}

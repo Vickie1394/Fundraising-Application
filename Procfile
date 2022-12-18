@@ -1,0 +1,1 @@
+web: gunicorn tuokoleane.wsgi --log-file -
