@@ -35,7 +35,10 @@
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <link href="https://res.cloudinary.com/betsafe-kenya/raw/upload/v1671371593/tuokoleane/css/main_d1eyha.css" rel="stylesheet">
-
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 </head>
 
 <body>
@@ -56,18 +59,18 @@
             
             {% if request.user.is_authenticated %}
             <li><a href="{% url 'fundraiser:dashboard' %}" class="active">Dashboard</a></li>
-            <li><a href="services.html">Our Services</a></li>
-            <li><a href="">How it works</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="{% url 'fundraiser:our_services' %}">Our Services</a></li>
+            <li><a href="{% url 'fundraiser:how_it_works' %}">How it works</a></li>
+            <li><a href="{% url 'fundraiser:about_us' %}">About Us</a></li>
+            <li><a href="{% url 'fundraiser:contact_us' %}">Contact</a></li>
             <li><a class="get-a-quote" href="{% url 'fundraiser:profile' %}">Profile</a></li>
             <li><a class="get-a-quote" href="{% url 'fundraiser:logout_user' %}">Logout</a></li>
             {% else %}
             <li><a href="{% url 'fundraiser:index' %}" class="active">Home</a></li>
-            <li><a href="services.html">Our Services</a></li>
-            <li><a href="">How it works</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="{% url 'fundraiser:our_services' %}">Our Services</a></li>
+            <li><a href="{% url 'fundraiser:how_it_works' %}">How it works</a></li>
+            <li><a href="{% url 'fundraiser:about_us' %}">About Us</a></li>
+            <li><a href="{% url 'fundraiser:contact_us' %}">Contact</a></li>
             <li><a class="get-a-quote" href="{% url 'fundraiser:register' %}">Register</a></li>
             <li><a class="get-a-quote" href="{% url 'fundraiser:login_user' %}">Login</a></li>
             {% endif %}

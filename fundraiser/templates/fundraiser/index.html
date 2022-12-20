@@ -104,13 +104,18 @@
               <input type="text" name="event_intention" class="form-control" id="event_intention_id" required>
             </div>
 
-            <div class="col-6 my-1">
+            <div class="col-4 my-1">
               <label for="">Start Date:</label>
               <input type="date" name="event_start_date" class="form-control" id="event_start_date_id" required>
             </div>
-            <div class="col-6 my-1">
+            <div class="col-4 my-1">
               <label for="">End Date:</label>
               <input type="date" name="event_end_date" class="form-control" id="event_end_date_id" required>
+            </div>
+
+            <div class="col-4 my-1">
+              <label for="">Target Amount:</label>
+              <input type="text" name="event_target_amount" class="form-control" id="event_target_amount" required>
             </div>
 
             <div class="col-12 my-1">
@@ -383,7 +388,7 @@
     <div class="container">
       <div class="row gy-4">
         <div class="col-lg-5 col-md-12 footer-info">
-          <a href="index.html" class="logo d-flex align-items-center">
+          <a href="{% url 'fundraiser:index' %}" class="logo d-flex align-items-center">
             <span>Tuokoleane</span>
           </a>
           <p>Every contribution counts. Together we can make a big impact!</p>

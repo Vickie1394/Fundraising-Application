@@ -9,13 +9,16 @@ class FundraisingEvent(models.Model):
     description = models.TextField(max_length=5000)
     start_date = models.DateField()
     end_date = models.DateField()
+    target_amount = models.CharField(max_length = 20)
+    amount_contributed = models.CharField(max_length=20, default=0)
     active = models.BooleanField(default=True)
+    members = models.ManyToManyField(User, related_name="event_members")
 
 
 class Contribution(models.Model):
     contributor = models.ForeignKey(User, on_delete=models.CASCADE)
     fundraising_event = models.ForeignKey(FundraisingEvent, on_delete=models.CASCADE)
     amount = models.CharField(max_length=20)
-    date = models.DateField()
+    date = models.DateField(auto_now_add=True)
     mpesa_transaction_code = models.CharField(max_length=50)
 

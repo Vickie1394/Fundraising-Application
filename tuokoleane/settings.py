@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_oqlw6qz11eln66q@(tw1mx)4+fos7rv=bv6pzemv$#+hmz)3c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 #ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ["tuokoleane.herokuapp.com"]
@@ -163,9 +163,7 @@ SECURE_HSTS_PRELOAD = True
 
 MAX_AGE = 30
 
-
 """
-
 
 SECURE_BROWSER_XSS_FILTER = True
 
@@ -186,4 +184,3 @@ SECURE_SSL_REDIRECT= True
 SECURE_HSTS_PRELOAD = True
 
 MAX_AGE = 30
-

@@ -38,7 +38,21 @@ from time import sleep
 
 def dashboard(request):
     if request.user.is_authenticated:
-        return render(request, 'fundraiser/dashboard.html')
+        contributions = Contribution.objects.filter(contributor = request.user)
+        total_contribution = 0
+        for contribution in contributions:
+            total_contribution += int(contribution.amount)
+
+        events_involved_in = [x for x in FundraisingEvent.objects.all() if request.user in x.members.all() and x.host != request.user ]
+        events_involved_in_count = len(events_involved_in)
+        my_events = FundraisingEvent.objects.filter(host = request.user)
+
+        latest_events = FundraisingEvent.objects.filter(host = request.user)
+        percentage_progress = 0
+        if len(latest_events) > 0:
+            latest_event = latest_events[len(latest_events) - 1]
+            percentage_progress = (int(latest_event.amount_contributed) / int(latest_event.target_amount) ) * 100
+        return render(request, 'fundraiser/dashboard.html', {'total_contribution':total_contribution,'events_involved_in': events_involved_in,'events_involved_in_count':events_involved_in_count, 'my_events': my_events, 'percentage_progress': percentage_progress})
     else:
         return redirect("fundraiser:index")
 
@@ -145,3 +159,101 @@ def logout_user(request):
     logout(request)
     request.session.clear()
     return redirect('fundraiser:index')
+
+def fundraising_event(request, code):
+    event = FundraisingEvent.objects.get(code = code)
+    contributions = Contribution.objects.filter(fundraising_event = event)
+    members_contributions = []
+    for contribution in contributions:
+        contributor = contribution.contributor
+        person_contributions = Contribution.objects.filter(Q(contributor = contributor) & Q(fundraising_event = event))
+        total_person_contribution_amount = 0
+        for person_contribution in person_contributions:
+            total_person_contribution_amount += int(person_contribution.amount)
+        
+        full_name = contributor.first_name + ' ' + contributor.last_name
+        members_contributions.append(
+            [full_name, total_person_contribution_amount]
+        )
+        
+
+    joined = "yes"
+    if request.user not in event.members.all():
+        joined = "no"
+
+    percentage_progress = (int(event.amount_contributed) / int(event.target_amount)) * 100
+    return render(request, 'fundraiser/fundraising_event.html', {
+        'event': event, 'joined':joined, 'contributions': contributions,
+        'members_contributions': members_contributions, 'percentage_progress': percentage_progress,
+        })
+
+def create_fundraising_event(request):
+    if request.user.is_authenticated and request.method == "POST":
+        code = get_random_string(20)
+        event = FundraisingEvent.objects.create(
+            host = request.user,
+            code = code,
+            name = request.POST.get("event_name"),
+            intent = request.POST.get("event_intention"),
+            description = request.POST.get("event_description"),
+            start_date = request.POST.get("event_start_date"),
+            end_date = request.POST.get("event_end_date"),
+            target_amount = request.POST.get('event_target_amount'),
+            amount_contributed = 0,
+            active = True
+
+        ).save()
+
+        event.members.add(request.user)
+        return redirect("fundraiser:fundraising_event", code)
+
+    elif not request.user.is_authenticated:
+        return redirect("fundraiser:login_user")
+    
+    return redirect("fundraiser:dashboard")
+
+
+def join_fundraising_event(request, code):
+    if request.user.is_authenticated:
+        event = FundraisingEvent.objects.get(code = code)
+        if request.user not in event.members.all():
+                event.members.add(request.user)
+
+        return redirect("fundraiser:fundraising_event", code = code)
+    
+    else:
+        return redirect("fundraiser:index")
+
+
+def donate(request):
+    if request.user.is_authenticated and request.method == "POST":
+        event_code = request.POST.get("event_code")
+        event = FundraisingEvent.objects.get(code = event_code)
+        amount = request.POST.get("amount")
+        Contribution.objects.create(
+            contributor = request.user,
+            fundraising_event = event,
+            amount = amount,
+            mpesa_transaction_code = get_random_string(12).upper(),
+
+        ).save()
+        event.amount_contributed = int(event.amount_contributed) + int(amount)
+        event.save()
+        data = {"successful":"yes"}
+        return JsonResponse(data)
+
+    return redirect("fundraiser:dashboard")
+
+
+def about_us(request):
+    return render(request, 'fundraiser/about_us.html')
+
+def contact_us(request):
+    return render(request, 'fundraiser/contact_us.html')
+
+
+def our_services(request):
+    return render(request, 'fundraiser/our_services.html')
+
+def how_it_works(request):
+    return render(request, 'fundraiser/how_it_works.html')
