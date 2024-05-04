@@ -12,7 +12,6 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from io import BytesIO
 import sys
 from django.core.files import File
-from PIL import Image, ImageDraw
 import os
 from django.utils.crypto import get_random_string
 from django.core.files.uploadedfile import InMemoryUploadedFile
@@ -80,7 +79,7 @@ def register(request):
             return render(request, 'fundraiser/register.html',
                             {'error_msg': error_msg})
         else:
-            user = User.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=email,
+            user = User.objects.create_user(first_name=first_name, last_name=last_name, email=email, username = email,
                                                     password=password)
             user.is_active = False
             user.save()
@@ -120,7 +119,6 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        login(request, user)
         return render(request, 'fundraiser/account_activated.html')
     else:
         return render(request, 'fundraiser/activation_invalid.html')
@@ -133,7 +131,8 @@ def login_user(request):
         email = request.POST.get('email_address')
         password = request.POST.get('password')
         try:
-            username =User.objects.get(email=email).username
+            get_user =User.objects.filter(email__icontains=email)
+            username = get_user[0].username
             user = authenticate(request, username=username, password=password)
             if user is not None and user.is_active:
                 login(request, user)
@@ -164,17 +163,20 @@ def fundraising_event(request, code):
     event = FundraisingEvent.objects.get(code = code)
     contributions = Contribution.objects.filter(fundraising_event = event)
     members_contributions = []
+    contributors_id = []
     for contribution in contributions:
-        contributor = contribution.contributor
-        person_contributions = Contribution.objects.filter(Q(contributor = contributor) & Q(fundraising_event = event))
-        total_person_contribution_amount = 0
-        for person_contribution in person_contributions:
-            total_person_contribution_amount += int(person_contribution.amount)
-        
-        full_name = contributor.first_name + ' ' + contributor.last_name
-        members_contributions.append(
-            [full_name, total_person_contribution_amount]
-        )
+        if contribution.contributor.id not in contributors_id:
+            contributor = contribution.contributor
+            person_contributions = Contribution.objects.filter(Q(contributor = contributor) & Q(fundraising_event = event))
+            total_person_contribution_amount = 0
+            for person_contribution in person_contributions:
+                total_person_contribution_amount += int(person_contribution.amount)
+            
+            full_name = contributor.first_name + ' ' + contributor.last_name
+            members_contributions.append(
+                [full_name, total_person_contribution_amount]
+            )
+            contributors_id.append(contribution.contributor.id)
         
 
     joined = "yes"
@@ -202,7 +204,9 @@ def create_fundraising_event(request):
             amount_contributed = 0,
             active = True
 
-        ).save()
+        )
+
+        event.save()
 
         event.members.add(request.user)
         return redirect("fundraiser:fundraising_event", code)
@@ -257,3 +261,10 @@ def our_services(request):
 
 def how_it_works(request):
     return render(request, 'fundraiser/how_it_works.html')
+
+from django.shortcuts import render
+
+def dialogflow_chatbot_view(request):
+    return render(request, 'dialogflow_chatbot.html')
+
+    

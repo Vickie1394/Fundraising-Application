@@ -211,8 +211,8 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div>
-                                        {% for event_am_involved in events_am_involved_in %}
-                                            <a href="{% url 'fundraiser:fundraising_event' event_am_involved_in.code %}" class="d-flex justify-content-between my-1"><span class="text-dark">{{event_am_involved.name}}</span> <i class="fa fa-arrow-right"></i></a>
+                                        {% for event_am_involved in events_involved_in %}
+                                            <a href="{% url 'fundraiser:fundraising_event' event_am_involved.code %}" class="d-flex justify-content-between my-1"><span class="text-dark">{{event_am_involved.name}}</span> <i class="fa fa-arrow-right"></i></a>
                                         {% endfor %}
                                     </div>
                                     

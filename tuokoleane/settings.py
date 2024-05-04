@@ -14,7 +14,6 @@ from pathlib import Path
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,10 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_oqlw6qz11eln66q@(tw1mx)4+fos7rv=bv6pzemv$#+hmz)3c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-#ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ["tuokoleane.herokuapp.com"]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -87,15 +85,11 @@ DATABASES = {
     }
 }
 
-db_from_env = dj_database_url.config(conn_max_age = 600)
-DATABASES['default'].update(db_from_env)
-
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'tuokoleane.services@gmail.com'
+EMAIL_HOST_USER = 'tuokoleane@gmail.com'
 EMAIL_PORT = '587'
-EMAIL_HOST_PASSWORD = 'zkgxvpxxcczmtfil'
+EMAIL_HOST_PASSWORD = 'qpsjdbwshdvuatry'
 EMAIL_USE_TLS = True
 
 
@@ -164,23 +158,3 @@ SECURE_HSTS_PRELOAD = True
 MAX_AGE = 30
 
 """
-
-SECURE_BROWSER_XSS_FILTER = True
-
-SECURE_HSTS_SECONDS = 30
-
-SECURE_CONTENT_TYPE_NOSNIFF = True
-
-X_FRAME_OPTIONS = 'DENY'
-
-SESSION_COOKIE_SECURE = True
-
-CSRF_COOKIE_SECURE = True
-
-SECURE_HSTS_INCLUDE_SUBDOMAINS  = True
-
-SECURE_SSL_REDIRECT= True
-
-SECURE_HSTS_PRELOAD = True
-
-MAX_AGE = 30
